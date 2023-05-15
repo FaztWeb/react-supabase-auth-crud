@@ -1,14 +1,10 @@
-import { useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 import { useTasks } from "../context/TaskContext";
-import { supabase } from "../supabase/client";
 import { Link } from "react-router-dom";
 
 function Navbar() {
   const { logout } = useTasks();
-
-  useEffect(() => {
-    console.log(supabase.auth.user());
-  }, []);
+  const { user } = useAuth()
 
   return (
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
@@ -25,7 +21,7 @@ function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        {supabase.auth.user() && (
+        {user && (
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">

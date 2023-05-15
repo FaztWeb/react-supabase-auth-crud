@@ -9,7 +9,7 @@ function Home() {
   const [showTasksDone, setShowTasksDone] = useState(false);
 
   useEffect(() => {
-    if (!supabase.auth.user()) {
+    if (!supabase.auth.getUser()) {
       navigate("/login");
     }
   }, [navigate]);

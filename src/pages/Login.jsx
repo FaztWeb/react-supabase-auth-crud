@@ -14,7 +14,7 @@ function Login() {
   };
 
   useEffect(() => {
-    if (supabase.auth.user()) {
+    if (supabase.auth.getUser()) {
       navigate("/");
     }
     console.log("called");

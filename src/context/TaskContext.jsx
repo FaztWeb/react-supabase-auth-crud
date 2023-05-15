@@ -48,7 +48,7 @@ export const TaskContextProvider = ({ children }) => {
   const createTask = async (taskName) => {
     setAdding(true);
     try {
-      const user = supabase.auth.user();
+      const user = supabase.auth.getUser();
 
       const { error, data } = await supabase.from("tasks").insert({
         name: taskName,
@@ -70,7 +70,7 @@ export const TaskContextProvider = ({ children }) => {
   const getTasks = async (done = false) => {
     setLoading(true);
 
-    const user = supabase.auth.user();
+    const user = supabase.auth.getUser();
 
     try {
       const { error, data } = await supabase
@@ -94,7 +94,7 @@ export const TaskContextProvider = ({ children }) => {
 
   const updateTasks = async (id, updatedFields) => {
     try {
-      const user = supabase.auth.user();
+      const user = supabase.auth.getUser();
       const { error, data } = await supabase
         .from("tasks")
         .update(updatedFields)
